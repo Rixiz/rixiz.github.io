@@ -120,7 +120,7 @@ h2 {
   height: 100vh;
   overflow: hidden;
   user-select: none;
-  background-image: url("https://cdn.discordapp.com/attachments/592344880638984233/1369223852344737863/vmpCRC6.jpeg?ex=681b1495&is=6819c315&hm=246d5c743542db5fb6620887db35a9d734329e5f662fd4837a8900d026aca0b2&");
+  background-image: url("img/vmpCRC6.jpeg");
   background-size: cover;
   z-index: -5;
 }
