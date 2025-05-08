@@ -120,7 +120,7 @@ h2 {
   height: 100vh;
   overflow: hidden;
   user-select: none;
-  background-image: url("img/vmpCRC6.jpeg");
+  background-image: url("https://raw.githubusercontent.com/Rixiz/rixiz.github.io/refs/heads/main/img/vmpCRC6.jpeg");
   background-size: cover;
   z-index: -5;
 }
