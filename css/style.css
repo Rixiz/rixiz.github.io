@@ -1,39 +1,29 @@
 /* Fonts */
 
-@import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Reenie+Beanie&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Raleway&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Sen&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+sans:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
-@font-face {
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 600;
-  src: url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_bZF3gnD_vx3rCs.woff2)
-    format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F,
-    U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+.active-content {
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
 }
-@font-face {
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: local("Roboto Bold"), local("Roboto-Bold"),
-    url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmWUlfBBc4AMP6lQ.woff2) format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F,
-    U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+.transition-wrap {
+  position: absolute;
+  width: 100%;
 }
 
 .container-all-purpose {
   position: relative;
   width: 100%;
   max-width: 1200px;
+  padding: 20px;
 }
 
 /* Chrome、Safari用 */
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 6px;
 }
 
@@ -46,12 +36,13 @@
   border-radius: 6px;
   border: 3px solid #00000000;
 }
-
+*/
 body {
   background-color: #070707;
   color: #f0f0f0;
   overflow-x: hidden;
   font-family: "Montserrat", "Open sans", sans-serif;
+  font-style: normal;
   scroll-behavior: auto !important;
 }
 
@@ -105,14 +96,14 @@ h2 {
 }
 
 .about {
-  background-image: url("https://media.discordapp.net/attachments/592344880638984233/1369388335168225350/blankblack.png?ex=681badc5&is=681a5c45&hm=7004bdab6e40d4c45e6217c33919155b1fd46d4ae522aec2abf72547c5152f4f&=&format=webp&quality=lossless&width=1152&height=864");
+  background-image: url("https://github.com/Rixiz/rixiz.github.io/blob/main/img/blankblack.png?raw=true");
   background-size: cover;
   background-position: center;
-  background-color: #000;
+  background-color: #070707;
 }
 
-.info {
-  background-image: url("https://media.discordapp.net/attachments/592344880638984233/1369388335168225350/blankblack.png?ex=681badc5&is=681a5c45&hm=7004bdab6e40d4c45e6217c33919155b1fd46d4ae522aec2abf72547c5152f4f&=&format=webp&quality=lossless&width=1152&height=864");
+.info-main {
+  background-image: url("https://github.com/Rixiz/rixiz.github.io/blob/main/img/blankblack.png?raw=true");
   background-size: cover;
   background-position: center;
   background-color: #070707;
@@ -130,12 +121,14 @@ h2 {
 /* Banner */
 
 #banner-video {
+  position: absolute;
   padding-left: -15px;
   padding-right: -15px;
   width: 100%;
   height: 100vh;
   overflow: hidden;
   user-select: none;
+  pointer-events: none;
   background-image: url("https://raw.githubusercontent.com/Rixiz/rixiz.github.io/refs/heads/main/img/vmpCRC6.jpeg");
   background-size: cover;
   z-index: -5;
@@ -163,6 +156,13 @@ h2 {
   z-index: -2; /* モバイル背景は下層に配置 */
 }
 
+.banner-text-container {
+  position: relative;
+  width: 100%;
+  bottom: 20%;
+  opacity: 0;
+}
+
 .content-wrapper {
   position: absolute;
   text-align: left;
@@ -173,24 +173,25 @@ h2 {
 }
 
 .banner-h1 {
-  font-weight: 800;
+  font-weight: 600;
   font-size: 36px;
 }
 .banner-h2 {
-  font-weight: 300;
+  font-weight: 500;
   font-size: 20px;
 }
-.showreel-button {
+.transparent-button {
   margin-top: 25px;
+  margin-right: 15px;
   display: inline-block;
-  padding: 12px 24px;
+  padding: 10px 24px;
   border: 1px solid white;
-  color: white !important;
+  color: white;
   background-color: transparent;
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 2px;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease;
   font-size: 12px;
 }
 
@@ -199,16 +200,42 @@ h2 {
   color: rgb(255, 255, 255);
 }
 
-.banner-text {
-  position: absolute;
-  font-family: "Helvetica Neue", "Open sans", sans-serif;
-  color: white;
-  text-align: left;
-  transition: font 0.25s ease-out;
-  width: 100%;
-  top: 50%;
-  padding: auto;
-  z-index: 3;
+/* smartphone */
+@media (max-width: 768px) {
+  .xl-banner-text {
+    display: none;
+  }
+  .banner-text-container {
+    transform: translateY(120px);
+    text-align: center;
+  }
+  .banner-h1 {
+    font-size: 40px;
+    font-weight: 600;
+  }
+  .banner-h2 {
+    font-size: 16px;
+  }
+  .xs-align-center {
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/* pc */
+@media (min-width: 768px) {
+  .xs-banner-text {
+    display: none;
+  }
+  .banner-h1 {
+    font-weight: 600;
+    font-size: 64px;
+    text-transform: uppercase;
+  }
+  .banner-h2 {
+    font-weight: 500;
+    font-size: 24px;
+  }
 }
 
 .banner-text p {
@@ -224,11 +251,6 @@ h2 {
   padding: 10px 20px;
   margin: 5px;
   border-radius: 4px;
-}
-
-.banner-text-container {
-  position: relative;
-  transform: translateY(-300%);
 }
 
 .banner-text a:hover {
@@ -273,6 +295,7 @@ h2 {
 /* Navbar */
 
 .navigation {
+  position: fixed;
   display: flex;
   justify-content: center;
   padding-top: 1rem;
@@ -280,15 +303,19 @@ h2 {
   width: 100%;
   height: 70px;
   z-index: 5;
-  opacity: 0;
+  opacity: 1;
   background-color: #070707;
 }
 
 .navigation-sub {
+  display: flex;
+  justify-content: center;
   padding-top: 1rem;
   transition: background-color 0.6s cubic-bezier(0.63, 0.15, 0.36, 0.91);
   width: 100%;
+  height: 70px;
   z-index: 5;
+  opacity: 1;
   background-color: #070707;
 }
 
@@ -313,10 +340,9 @@ h2 {
 }
 
 .navbar-brand {
+  transform: translateY(-10px);
   position: relative;
   filter: drop-shadow(2px 2px 2px #8282825f);
-  padding-left: 1rem;
-  bottom: 12px;
   display: flex;
   align-items: center;
 }
@@ -324,11 +350,15 @@ h2 {
 .navbar-nav {
   position: relative;
   bottom: 10px;
-  font-weight: 800;
+  font-weight: 600;
   font-size: 14px;
   letter-spacing: 0.1em;
 }
 
+li.current a {
+  color: #8c8b8b;
+  font-weight: 700;
+}
 .nav-link:hover {
   color: #8c8b8b;
 }
@@ -373,10 +403,9 @@ h2 {
 }
 
 .button_container {
+  top: 15%;
   position: absolute;
-  top: 50%;
-  right: 15px;
-  transform: translateY(-50%);
+  right: 1px;
   height: 27px;
   width: 27px;
   cursor: pointer;
@@ -601,6 +630,7 @@ h2 {
 /* Portfolio */
 
 .portfolio-text {
+  position: relative;
   padding-top: 8rem;
   font-size: 1.5rem;
   line-height: 125%;
@@ -837,12 +867,12 @@ h2 {
   color: #191a1c;
   font-size: 160px;
   padding-top: 10rem;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .info-title {
-  letter-spacing: 0.1em;
-  font-weight: 700;
+  letter-spacing: 0.05em;
+  font-weight: 600;
   font-size: 36px;
   transform: translateY(-8px);
 }
