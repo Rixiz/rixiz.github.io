@@ -1,3 +1,12 @@
+const lenis = new Lenis({
+  lerp: 0.15,
+});
+function raf(time) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
+
+requestAnimationFrame(raf);
 function initArrowScroll() {
   const scrollBtn = document.getElementById("scroll-button");
   const target = document.getElementById("introduction");
@@ -12,17 +21,58 @@ function initArrowScroll() {
   }
 }
 
+function initCurrentHighlight() {
+  const headerNavLink = document.querySelectorAll(".nav-link");
+  headerNavLink.forEach((targetLink) => {
+    if (targetLink.href === location.href) {
+      targetLink.parentElement.classList.add("current");
+    }
+  });
+}
+
 // ナビゲーション表示アニメーション
 function initNavbar() {
   const $nav = document.querySelector(".navigation");
   if (!$nav) return;
-  gsap.set($nav, { y: -60, opacity: 0 });
+  gsap.set($nav, { y: -60, opacity: 0, top: 0 });
   gsap.to($nav, {
     y: 0,
     opacity: 1,
-    duration: 1.2,
-    delay: 0.4,
+    duration: 1.6,
+    delay: 0.6,
     ease: "power2.inOut",
+  });
+}
+
+function initBannerTextAnimation() {
+  const $bannerText = document.querySelectorAll(".banner-h1, .banner-h2");
+  const $bannerTextContainer = document.querySelector(".banner-text-container");
+  const $transparentButton = document.querySelectorAll(".transparent-button");
+  if (!$bannerText) return;
+  gsap.set($bannerText, { y: 60, opacity: 0 });
+  gsap.set($bannerTextContainer, { opacity: 0 });
+  gsap.set($transparentButton, { y: 60, opacity: 0 });
+  gsap.to($bannerText, {
+    y: 0,
+    opacity: 1,
+    duration: 1.2,
+    delay: 2.5,
+    stagger: 0.2,
+    ease: "power2.out",
+  });
+  gsap.to($bannerTextContainer, {
+    opacity: 1,
+    duration: 1.2,
+    delay: 2.5,
+    ease: "power2.out",
+  });
+  gsap.to($transparentButton, {
+    y: 0,
+    opacity: 1,
+    duration: 1.2,
+    delay: 4.2,
+    stagger: 0.2,
+    ease: "power2.out",
   });
 }
 
@@ -105,10 +155,12 @@ function initSlider() {
 // すべての初期化関数をまとめて呼ぶ
 function initAllScripts() {
   initNavbar();
+  initBannerTextAnimation();
   initArrowScroll();
   initNavTransparency();
   initMenuToggle();
   initSlider();
+  initCurrentHighlight();
 }
 
 // --------------------------
@@ -152,25 +204,37 @@ barba.init({
         progressBar.start();
         const done = this.async();
         const scrollY = window.scrollY;
-
+        const viewportHeight = window.innerHeight;
+        console.log(scrollY);
+        gsap.set(".navigation", {
+          top: scrollY - "500px",
+          opacity: 1,
+        });
+        gsap.to(".navigation", {
+          top: -scrollY - "500px",
+          opacity: 0,
+          duration: 0.5,
+          ease: "power2.inOut",
+        });
         gsap.set(current.container, {
           position: "fixed",
           top: -scrollY,
+          left: 0,
           width: "100%",
-          zIndex: 10,
+          zIndex: -5,
         });
         gsap.set(next.container, {
           position: "fixed",
           top: window.innerHeight,
+          left: 0,
           width: "100%",
-          zIndex: 100,
+          zIndex: 500,
         });
 
         const tl = gsap.timeline({
           onComplete: () => {
-            gsap.set([current.container, next.container], {
-              clearProps: "all",
-            });
+            gsap.set(current.container, { clearProps: "all" });
+            gsap.set(next.container, { clearProps: "all" });
             progressBar.finish();
             done();
           },
@@ -179,8 +243,8 @@ barba.init({
         tl.to(
           current.container,
           {
-            top: -scrollY - window.innerHeight * 0.25,
-            duration: 1.2,
+            top: -scrollY - window.innerHeight * 0.5,
+            duration: 1.6,
             ease: "power2.inOut",
           },
           0
@@ -190,7 +254,7 @@ barba.init({
           next.container,
           {
             top: 0,
-            duration: 1.2,
+            duration: 1.6,
             ease: "power2.inOut",
           },
           0
